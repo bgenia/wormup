@@ -8,6 +8,8 @@
     "lint:fix": "eslint \"src/**/*.{js,mjs,cjs,ts,mts}\" --fix"
   },
   "dependencies": {
+    "@googleapis/docs": "^2.0.5",
+    "osu-api-extended": "^2.7.67"
   },
   "devDependencies": {
     "@total-typescript/ts-reset": "^0.5.1",
