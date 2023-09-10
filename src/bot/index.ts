@@ -14,12 +14,12 @@ export const client = new BanchoClient({ username, password })
 try {
 	await authorize(client)
 	console.log("Connection established!")
-} catch (err) {
-	console.log(err)
+} catch (error) {
+	console.log(error)
 }
 
 client.on("PM", async (m) => {
-	if (m.user.ircUsername == username) {
+	if (m.user.ircUsername === username) {
 		return
 	}
 
@@ -28,7 +28,7 @@ client.on("PM", async (m) => {
 		if (response) {
 			await m.user.sendMessage(JSON.stringify(response))
 		}
-	} catch (err) {
-		console.log(err)
+	} catch (error) {
+		console.log(error)
 	}
 })

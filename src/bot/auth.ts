@@ -6,11 +6,9 @@ export async function authorize(client: BanchoClient) {
 	try {
 		await client.connect()
 		if (client.isConnected()) return
-		else {
-			console.error("Connection is not established. Reconnecting...")
-			await waitToReconnect(client)
-		}
-	} catch (err) {
+		console.error("Connection is not established. Reconnecting...")
+		await waitToReconnect(client)
+	} catch (error) {
 		console.error("Connection error. Reconnecting...")
 		await waitToReconnect(client)
 	}
@@ -21,11 +19,9 @@ async function reconnect(client: BanchoClient) {
 		try {
 			await client.connect()
 			if (client.isConnected()) return
-			else {
-				console.error("Connection is not established. Reconnecting...")
-				await waitToReconnect(client)
-			}
-		} catch (err) {
+			console.error("Connection is not established. Reconnecting...")
+			await waitToReconnect(client)
+		} catch (error) {
 			console.error("Connection error. Reconnecting...")
 			await waitToReconnect(client)
 		}

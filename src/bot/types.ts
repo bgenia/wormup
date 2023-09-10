@@ -19,9 +19,9 @@ type ParseResult = {
 
 export {
 	ComparisonFilter,
-	NumberFilter,
-	StatusFilter,
-	ParseResult,
 	COMPARSION_SIGNS,
 	MAP_STATUSES,
+	NumberFilter,
+	ParseResult,
+	StatusFilter,
 }
