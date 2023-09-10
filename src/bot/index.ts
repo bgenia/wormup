@@ -24,8 +24,11 @@ client.on("PM", async (m) => {
 	}
 
 	const response = parse(m.message.toLowerCase())
-
-	await m.user.sendMessage(
-		response ? JSON.stringify(response) : "Неправильный запрос",
-	)
+	try {
+		if (response) {
+			await m.user.sendMessage(JSON.stringify(response))
+		}
+	} catch (err) {
+		console.log(err)
+	}
 })
