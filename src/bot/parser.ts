@@ -1,10 +1,55 @@
-import {
-	type ComparisonFilter,
+const COMPARSION_SIGNS = [">", "<", "="] as const
+const MAP_STATUSES = ["ranked", "loved", "unranked", "approved", "wip"] as const
+
+type ComparisonFilter = (typeof COMPARSION_SIGNS)[number]
+type StatusFilter = (typeof MAP_STATUSES)[number]
+type NumberFilter = {
+	comparison: ComparisonFilter
+	value: string
+}
+type ParseResult = {
+	bpm: NumberFilter[]
+	len: NumberFilter[]
+	mapper?: string
+	status?: StatusFilter
+	spaced?: boolean
+	long?: boolean
+}
+
+export {
+	ComparisonFilter,
 	COMPARSION_SIGNS,
 	MAP_STATUSES,
-	type ParseResult,
-	type StatusFilter,
-} from "@/bot/types"
+	NumberFilter,
+	ParseResult,
+	StatusFilter,
+}
+
+export function parse(message: string): ParseResult | null {
+	const result: ParseResult = {
+		bpm: [],
+		len: [],
+	}
+
+	const initial = message.trim()
+	const splitted = initial.split(" ")
+
+	if (splitted[0] !== "!r") return null
+	if (splitted.length === 1) return result
+
+	splitted.forEach((el, i) => {
+		if (i === 0) return
+
+		processBpm(el, result)
+		processLen(el, result)
+		processMapper(el, result)
+		processStatus(el, result)
+		processSpaced(el, result)
+		processLong(el, result)
+	})
+
+	return result
+}
 
 function isComparisonFilter(value: string): value is ComparisonFilter {
 	return COMPARSION_SIGNS.includes(value as ComparisonFilter)
@@ -97,30 +142,4 @@ function processLong(el: string, obj: ParseResult) {
 			else if (value === "false") obj.long = false
 		}
 	}
-}
-
-export function parse(message: string): ParseResult | null {
-	const result: ParseResult = {
-		bpm: [],
-		len: [],
-	}
-
-	const initial = message.trim()
-	const splitted = initial.split(" ")
-
-	if (splitted[0] !== "!r") return null
-	if (splitted.length === 1) return result
-
-	splitted.forEach((el, i) => {
-		if (i === 0) return
-
-		processBpm(el, result)
-		processLen(el, result)
-		processMapper(el, result)
-		processStatus(el, result)
-		processSpaced(el, result)
-		processLong(el, result)
-	})
-
-	return result
 }
