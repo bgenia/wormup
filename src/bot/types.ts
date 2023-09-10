@@ -5,7 +5,7 @@ type ComparisonFilter = (typeof COMPARSION_SIGNS)[number]
 type StatusFilter = (typeof MAP_STATUSES)[number]
 
 type NumberFilter = {
-	equality: ComparisonFilter
+	comparison: ComparisonFilter
 	value: string
 }
 type ParseResult = {

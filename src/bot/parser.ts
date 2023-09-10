@@ -22,7 +22,7 @@ function processBpm(el: string, obj: ParseResult) {
 	const value = el.slice(4)
 	if (value && !isNaN(Number(value))) {
 		obj.bpm.push({
-			equality: el[3],
+			comparison: el[3],
 			value: value,
 		})
 	} else return
@@ -36,7 +36,7 @@ function processLen(el: string, obj: ParseResult) {
 	const value = el.slice(4)
 	if (value && !isNaN(Number(value))) {
 		obj.len.push({
-			equality: el[3],
+			comparison: el[3],
 			value: value,
 		})
 	} else return
