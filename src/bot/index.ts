@@ -1,5 +1,6 @@
 import { BanchoClient } from "bancho.js"
 import { authorize } from "@/bot/auth"
+import { parse } from "@/bot/parser"
 
 const username = process.env.USERNAME
 const password = process.env.IRC
@@ -21,6 +22,10 @@ client.on("PM", async (m) => {
 	if (m.user.ircUsername == username) {
 		return
 	}
-	console.log(m.message)
-	await m.user.sendMessage("Привет. Я новый бот!")
+
+	const response = parse(m.message.toLowerCase())
+
+	await m.user.sendMessage(
+		response ? JSON.stringify(response) : "Неправильный запрос",
+	)
 })
