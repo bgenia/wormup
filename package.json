@@ -3,13 +3,13 @@
   "type": "module",
   "module": "src/index.ts",
   "scripts": {
-    "start": "bun run src/index.ts",
+    "start": "bun run src/main.ts",
     "lint": "eslint \"src/**/*.{js,mjs,cjs,ts,mts}\"",
     "lint:fix": "eslint \"src/**/*.{js,mjs,cjs,ts,mts}\" --fix"
   },
   "dependencies": {
     "@googleapis/docs": "^2.0.5",
-    "osu-api-extended": "^2.7.67"
+    "bancho.js": "^0.11.3"
   },
   "devDependencies": {
     "@total-typescript/ts-reset": "^0.5.1",
