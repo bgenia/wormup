@@ -9,8 +9,8 @@ type NumberFilter = {
 	value: string
 }
 type ParseResult = {
-	bpm?: NumberFilter
-	len?: NumberFilter
+	bpm: NumberFilter[]
+	len: NumberFilter[]
 	mapper?: string
 	status?: StatusFilter
 	spaced?: boolean

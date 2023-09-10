@@ -21,10 +21,10 @@ function processBpm(el: string, obj: ParseResult) {
 
 	const value = el.slice(4)
 	if (value && !isNaN(Number(value))) {
-		obj.bpm = {
+		obj.bpm.push({
 			equality: el[3],
 			value: value,
-		}
+		})
 	} else return
 }
 function processLen(el: string, obj: ParseResult) {
@@ -35,10 +35,10 @@ function processLen(el: string, obj: ParseResult) {
 
 	const value = el.slice(4)
 	if (value && !isNaN(Number(value))) {
-		obj.len = {
+		obj.len.push({
 			equality: el[3],
 			value: value,
-		}
+		})
 	} else return
 }
 function processMapper(el: string, obj: ParseResult) {
@@ -102,7 +102,10 @@ function processLong(el: string, obj: ParseResult) {
 }
 
 export function parse(message: string): ParseResult | null {
-	const result: ParseResult = {}
+	const result: ParseResult = {
+		bpm: [],
+		len: [],
+	}
 
 	const initial = message.trim()
 	const splitted = initial.split(" ")
